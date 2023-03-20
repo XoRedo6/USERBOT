@@ -30,28 +30,9 @@ async def start(client, message):
         await message.reply_text("ʜɪ! ᴍʏ ɴᴀᴍᴇ ɪs ᴄᴜᴛᴇ sᴜɴʜᴇʀɪ. ɪ'ᴍ ᴀɴ ᴀʀᴛɪғɪᴄɪᴀʟ ɪɴᴛᴇʟʟɪɢᴇɴᴄᴇ")
 
 
-@bot.on_message(
-    filters.command("chatbot odd", prefixes=["/", ".", "?", "-"])
-    & ~filters.private)
-async def chatbotofd(client, message):
-    vickdb = MongoClient(MONGO_URL)    
-    vick = vickdb["VickDb"]["Vick"]     
-    if message.from_user:
-        user = message.from_user.id
-        chat_id = message.chat.id
-        if user not in (
-           await is_admins(chat_id)
-        ):
-           return await message.reply_text(
-                "ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴ 😒"
-            )
-    is_vick = vick.find_one({"chat_id": message.chat.id})
-    if not is_vick:
-        vick.insert_one({"chat_id": message.chat.id})
-        await message.reply_text(f"ᴄʜᴀᴛʙᴏᴛ ᴅɪsᴀʙʟᴇᴅ 🥺🥺")
-    if is_vick:
-        await message.reply_text(f"ᴄʜᴀᴛ ʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ 😑😑")
-    
+
+           
+        
 
 @bot.on_message(
     filters.command("chatbot on", prefixes=["/", ".", "?", "-"])
